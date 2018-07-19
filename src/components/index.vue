@@ -16,7 +16,7 @@
 		                <i>
 		                  <img src="../assets/images/applist (2).png" alt="">
 		                </i>
-		                <p>京东服饰</p>
+		                <p>京东货物</p>
 		              </li>
 		              <li class="table-tabs-item">
 		                <i>
