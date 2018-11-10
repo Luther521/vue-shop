@@ -1,15 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/components/index'
-
 Vue.use(Router)
-
 export default new Router({
   routes: [
-    {
+    { 
+      mode:'history',
       path: '/',
-      name: 'index',
-      component: index
-    }
+      name: 'login',
+      component: resolve => require(['@/pages/login/'], resolve)//懒加载
+      // children:[
+      //   { 
+      //      path: '/register',
+      //      name: 'register',
+      //      component: resolve => require(['@/pages/register/'], resolve),//懒加载
+       
+      //   }
+      // ]
+     }
+    // { 
+    //   mode: 'history',
+    //   path: '/register',
+    //   name: 'register',
+    //   component: resolve => require(['@/pages/login/'], resolve)//懒加载
+    // }
   ]
 })
