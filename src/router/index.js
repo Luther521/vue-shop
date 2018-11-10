@@ -1,27 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import App from '../App'
 Vue.use(Router)
-export default new Router({
-  routes: [
-    { 
-      mode:'history',
-      path: '/',
-      name: 'login',
-      component: resolve => require(['@/pages/login/'], resolve)//懒加载
-      // children:[
-      //   { 
-      //      path: '/register',
-      //      name: 'register',
-      //      component: resolve => require(['@/pages/register/'], resolve),//懒加载
-       
-      //   }
-      // ]
-     }
-    // { 
-    //   mode: 'history',
-    //   path: '/register',
-    //   name: 'register',
-    //   component: resolve => require(['@/pages/login/'], resolve)//懒加载
-    // }
-  ]
-})
+export default [{
+  path: '/',
+  component: App,
+  children: [{
+      path: '',
+      component: r => require.ensure([], () => r(require('@/pages/login/index')), 'login')
+  }, {
+      path: '/register',
+      component: r => require.ensure([], () => r(require('@/pages/register/register')), 'register')
+  }]
+}]
