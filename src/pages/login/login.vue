@@ -1,18 +1,75 @@
 <template>
    <div>
-       我是登陆首页 
-       <button @click="sayHi">登陆按钮</button>
+       <mt-header title="首页">
+            <router-link to="/" slot="left">
+                <mt-button icon="back">返回</mt-button>
+            </router-link>
+            <mt-button icon="more" slot="right"></mt-button>
+        </mt-header>
+        <mt-field label="手机号：" placeholder="请输入正确的手机号码" type="tel" v-model="phone"></mt-field>  
+        <mt-field label="密码：" placeholder="请输入正确的密码" type="password" v-model="password"></mt-field>
+        <div class="loginBtn">
+            <mt-button type="primary" @click="login">登录</mt-button>
+        </div>
    </div>
 </template>
 <script>
-import  topheader from '@/pages/common/topheader'
+import  { Header, Button ,Toast } from 'mint-ui'
    export default {
+        data() {
+            return {
+              phone:'',
+              password:''
+            }
+        },
         components: {
-
+             Header,
+             Button,
+             Toast
             },
+        computed:{
+                //判断手机号码
+            rightPhoneNumber: function (){
+                return /^1\d{10}$/.test(this.phone)
+            }
+        },
         methods: {
-            sayHi: function () {
-                alert('我被点击了')
+            login () {
+                debugger;
+                if(!this.rightPhoneNumber){
+                    Toast({
+                        message: '请输入正确的手机号码',
+                        position: 'middle',
+                        duration: 5000
+                    });
+                    return;
+                }else if(!this.password){
+                    Toast({
+                        message: '请输入正确的密码',
+                        position: 'middle',
+                        duration: 5000
+                    });
+                    return;  
+                }
+                this.$router.push('/register');
             }
         }
     }
+    </script>
+    <style>
+       .mint-cell-title{
+             width: 70px !important;  
+       }
+       .mint-cell-text{
+            font-size: 16px
+       }
+       .loginBtn{
+          width: 90%;
+          margin: auto;
+          margin-top: 60px;
+       }
+       .loginBtn button{
+           width: 100%;
+       }
+    </style>
+    

@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-//const login = r => require.ensure([], () => r(require('../pages/login/login')), 'login')//定义路由路径,目的为了webpack打包的时候按需打包，
-//语法require.ensure(dependencies: String[], callback: function(require), chunkName: String)
 const login = r => require.ensure([], () => r(require('../pages/login/login')), 'login')
 const register = r => require.ensure([], () => r(require('../pages/register/register')), 'register')
 import App from '../App'
