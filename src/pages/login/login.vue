@@ -58,7 +58,7 @@ import  { Header, Button ,Toast } from 'mint-ui'
     </script>
     <style>
        .mint-cell-title{
-             width: 70px !important;  
+             width:120px !important;  
        }
        .mint-cell-text{
             font-size: 16px
@@ -72,4 +72,3 @@ import  { Header, Button ,Toast } from 'mint-ui'
            width: 100%;
        }
     </style>
-    
