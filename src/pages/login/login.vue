@@ -11,6 +11,10 @@
         <div class="loginBtn">
             <mt-button type="primary" @click="login">登录</mt-button>
         </div>
+        <div>{{ message.split('').reverse().join('') }}</div>
+        <div>{{ message.split('').reverse().join('') }}</div>
+        <div>{{now}}</div>
+        <div>你是中国人吗</div>
    </div>
 </template>
 <script>
@@ -19,7 +23,9 @@ import  { Header, Button ,Toast } from 'mint-ui'
         data() {
             return {
               phone:'',
-              password:''
+              password:'',
+              message:'我是中国人',
+              isactive:false
             }
         },
         components: {
@@ -28,14 +34,23 @@ import  { Header, Button ,Toast } from 'mint-ui'
              Toast
             },
         computed:{
-                //判断手机号码
+            //判断手机号码
             rightPhoneNumber: function (){
                 return /^1\d{10}$/.test(this.phone)
+            },
+            reverseForm:function(){
+                return message.split('').reverse().join('')
+            },
+            now:function(){
+                return Date.now();
             }
+            
+        },
+        watch:{
+            
         },
         methods: {
-            login () {
-                debugger;
+            login () {               
                 if(!this.rightPhoneNumber){
                     Toast({
                         message: '请输入正确的手机号码',
@@ -51,14 +66,14 @@ import  { Header, Button ,Toast } from 'mint-ui'
                     });
                     return;  
                 }
-                this.$router.push('/register');
+                this.$router.push('/home');
             }
         }
     }
     </script>
     <style>
        .mint-cell-title{
-             width:120px !important;  
+          width:120px !important;  
        }
        .mint-cell-text{
             font-size: 16px
@@ -70,5 +85,11 @@ import  { Header, Button ,Toast } from 'mint-ui'
        }
        .loginBtn button{
            width: 100%;
+       }
+       .gcolor{
+           color: green;
+       }
+       .rcolor{
+           color: red;
        }
     </style>
